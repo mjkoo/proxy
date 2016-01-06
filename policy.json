@@ -1,6 +1,40 @@
 {
     "states": [
         {
+            "name": "dnp3_cb",
+            "stack": "stack",
+            "sections": [
+                { "name": ".rel.dyn", "create": false, "flags": "r" },
+                { "name": ".init", "create": false, "flags": "rx" },
+                { "name": ".iplt", "create": false, "flags": "rx" },
+                { "description": "*(.text.dnp3_cb)", "flags": "rx" },
+                { "name": ".text.shared", "create": false, "flags": "rx" },
+                { "name": "__libc_freeres_fn", "create": false, "flags": "rx" },
+                { "name": "__libc_thread_freeres_fn", "create": false, "flags": "rx" },
+                { "name": ".fini", "create": false, "flags": "rx" },
+                { "description": "*(.rodata.dnp3_cb)", "flags": "r" },
+                { "name": ".rodata.shared", "create": false, "flags": "r" },
+                { "name": "__libc_subfreeres", "create": false, "flags": "r" },
+                { "name": "__libc_atexit", "create": false, "flags": "r" },
+                { "name": "__libc_thread_subfreeres", "create": false, "flags": "r" },
+                { "name": ".ARM.extab", "create": false, "flags": "r" },
+                { "name": ".ARM.exidx", "create": false, "flags": "r" },
+                { "name": ".eh_frame", "create": false, "flags": "r" },
+                { "name": ".tdata", "create": false, "flags": "rw" },
+                { "name": ".tbss", "create": false, "flags": "rw" },
+                { "name": ".init_array", "create": false, "flags": "rw" },
+                { "name": ".fini_array", "create": false, "flags": "rw" },
+                { "name": ".jcr", "create": false, "flags": "rw" },
+                { "name": ".data.rel.ro", "create": false, "flags": "rw" },
+                { "name": ".got", "create": false, "flags": "rw" },
+                { "description": "*(.data.dnp3_cb)", "flags": "rw" },
+                { "name": ".data.shared", "create": false, "flags": "rw" },
+                { "name": "__libc_freeres_ptrs", "create": false, "flags": "rw" },
+                { "description": "*(.bss.dnp3_cb)", "flags": "rw" },
+                { "name": ".bss.shared", "create": false, "flags": "rw" }
+            ]
+        },
+        {
             "name": "dnp3",
             "stack": "stack",
             "sections": [
@@ -120,6 +154,63 @@
             "address": "dissector_finish",
             "param_size": 0,
             "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser13OnLinkInvalidEPvPK10DNP3_Frame",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser11OnLinkFrameEPvPK10DNP3_FramePKhj",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser18OnTransportSegmentEPvPK12DNP3_Segment",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser18OnTransportDiscardEPvj",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser18OnTransportPayloadEPvPKhj",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser12OnAppInvalidEPv15DNP3_ParseError",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser13OnAppFragmentEPvPK13DNP3_FragmentPKhj",
+            "param_size": 0,
+            "return_size": 0
+        },
+        {
+            "from": "dnp3",
+            "to": "dnp3_cb",
+            "address": "_ZN5proxy4dnp310DNP3Parser10OnLogErrorEPvPKcz",
+            "param_size": 0,
+            "return_size": 0
         }
     ]
 }
+

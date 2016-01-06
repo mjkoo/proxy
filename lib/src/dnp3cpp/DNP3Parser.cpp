@@ -59,6 +59,7 @@ DNP3_Callbacks DNP3Parser::GetCallbacks()
     };
 }
 
+__attribute((section(".text.dnp3_cb")))
 int DNP3Parser::OnLinkFrame(void *env, const DNP3_Frame *frame, const uint8_t *buf, size_t len)
 {
     auto parser = reinterpret_cast<DNP3Parser*>(env);
@@ -77,6 +78,7 @@ int DNP3Parser::OnLinkFrame(void *env, const DNP3_Frame *frame, const uint8_t *b
     return 0;
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnLinkInvalid(void *env, const DNP3_Frame *frame)
 {
     auto parser = reinterpret_cast<DNP3Parser*>(env);
@@ -86,11 +88,13 @@ void DNP3Parser::OnLinkInvalid(void *env, const DNP3_Frame *frame)
     LOG(ERROR) << "invalid link layer frame";
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnTransportSegment(void *env, const DNP3_Segment *segment)
 {
     // -- TODO -- logging?
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnTransportDiscard(void *env, size_t n)
 {
     auto parser = reinterpret_cast<DNP3Parser*>(env);
@@ -100,11 +104,13 @@ void DNP3Parser::OnTransportDiscard(void *env, size_t n)
     LOG(ERROR) << "Transport segment discarded w/ length: " << n;
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnTransportPayload(void *env, const uint8_t *s, size_t n)
 {
     // -- TODO -- logging?
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnAppInvalid(void *env, DNP3_ParseError e)
 {
     auto parser = reinterpret_cast<DNP3Parser*>(env);
@@ -114,6 +120,7 @@ void DNP3Parser::OnAppInvalid(void *env, DNP3_ParseError e)
     LOG(ERROR) << "DNP3 parser error: " << e << " (" << ParseErrorToString(e) << ")";
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnAppFragment(void *env, const DNP3_Fragment *fragment, const uint8_t *buf, size_t len)
 {
     auto parser = reinterpret_cast<DNP3Parser*>(env);
@@ -127,6 +134,7 @@ void DNP3Parser::OnAppFragment(void *env, const DNP3_Fragment *fragment, const u
     parser->m_callbacks.QueueWrite(RSlice(buf, len));
 }
 
+__attribute((section(".text.dnp3_cb")))
 void DNP3Parser::OnLogError(void *env, const char *fmt, ...)
 {
     char output[80];
