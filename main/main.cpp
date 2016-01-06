@@ -15,6 +15,7 @@ using namespace proxy;
 // Input ("dirty") buffer for the parser.
 // This is so we can tag the buffer for the elfbac policy close to the program entry point.
 // In the future we'll likely pass the parser an abstract allocator instead of the raw buffer itself.
+__attribute__((section(".data.inputbuffer")))
 uint8_t inputBuffer[4619];
 
 std::unique_ptr<IParserFactory> GetFactory(const std::string& name);
